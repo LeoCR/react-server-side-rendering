@@ -1,0 +1,26 @@
+@import "compass/css3";
+@import "animations";
+@import "media_queries";
+@import "header";
+@import "nav";
+@import "slider";
+@import "hover";
+@import "content";
+@import "buttons";
+@import "ribbon";
+@import "footer";
+@import "bg_img";
+#languages-skills{
+    li{
+        margin:5px 0;
+        font-family: "Montserrat", sans-serif;
+    }   
+}
+span.porcentage-knowledge {
+    background: #f09950;
+    width: 200px;
+    position: relative;
+    float: right;
+    margin-right: 56%;
+    text-align: center;
+}

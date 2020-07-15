@@ -1,0 +1,141 @@
+@media screen and (max-width:1050px) {
+    .aside_caption{
+        top:15% !important;
+        left: 15% !important;
+    }
+    .btn-prev,
+    .btn-next {
+      top: 4% !important;
+    }
+    .hamburger{
+        display: block !important;
+    }
+    section.opened_menu{
+        -moz-transition: all ease-in-out 0.45s;
+        -webkit-transition: all ease-in-out 0.45s;
+        -o-transition: all ease-in-out 0.45s;
+        -ms-transition: all ease-in-out 0.45s;
+        transition: all ease-in-out 0.45s;
+    }
+    #main_nav {
+        left: 0% !important;
+        width: 99% !important; 
+        &.navigation_div #navigation_ul {
+            width: 100% !important;
+            max-width: none !important; 
+            float: right !important;
+            opacity: 0 !important;
+            -moz-transition: all ease-in-out 0.45s;
+            -webkit-transition: all ease-in-out 0.45s;
+            -o-transition: all ease-in-out 0.45s;
+            -ms-transition: all ease-in-out 0.45s;
+            transition: all ease-in-out 0.45s;
+            left: 90%;
+            top:92%;
+            position: fixed;
+            height:120px;
+            padding:10px;
+            li {
+                float: left;
+                height: 65px !important;
+                margin: 17px 1px !important;
+                max-width: 125px !important;
+                width: 100%;
+                &:first-child{
+                    margin-left: 10% !important;
+                }
+                a.nav_btn {
+                    width: 100% !important;
+                    padding: 0 !important;
+                    height: 50px;
+                    float: left;
+                }
+                .piece {
+                    width: 30px !important;
+                    height: 30px !important;
+                }
+            }
+        }
+    }
+    #main_nav.opened_menu { 
+        &.navigation_div #navigation_ul {
+            opacity:1 !important;
+            -moz-transition: all ease-in-out 0.45s;
+            -webkit-transition: all ease-in-out 0.45s;
+            -o-transition: all ease-in-out 0.45s;
+            -ms-transition: all ease-in-out 0.45s;
+            transition: all ease-in-out 0.45s;
+            top:88%;
+            left:0%;
+            position:fixed;
+        }
+    }
+    aside.aside_about_us{
+        margin: 10% 0px 0px 0px !important;
+    }
+    .aside_about_us h2{
+        margin-bottom: 7% !important;
+        margin-top: 8% !important;
+    }
+    #about-us {
+        padding: 0% 0 0 1.5% !important;
+    }
+    #main_nav.navigation_div ul#navigation_ul li {
+        max-width: 100px !important;
+    }
+    #service-description .subtitle_content{
+        left: 38% !important;
+    }
+    body.reading_more_about_us{
+        #article_services{
+            margin-top:0% !important;
+            padding-top: 0% !important;
+        }
+    }
+    #service_descriptin_content p{
+        position: relative;
+        margin-top: 52%;
+    }
+}
+@media screen and (max-width:990px) {
+    #location_map,#contact_form_container{
+        width: 100% !important;
+    }
+    #article-contact-us{
+        height: 100% !important;
+    }
+    #title_contact_form{
+        font-size: 39px !important;
+        font-weight: 500;
+    }
+    #read_more_bg_content{
+        fill-rule: evenodd;
+        clip-rule: evenodd;
+        stroke-linejoin: round;
+        stroke-miterlimit: 1.41421;
+        background: #fff;
+        display: block;
+        position: absolute;
+        z-index: 3;
+        margin-top: 102%;
+    }
+    #about_us_article{
+        min-height: 1090px;
+    }
+    body.reading_more_about_us #article_services{
+        padding-top: 0%;
+    }
+    #about_us_article{
+        min-height: 1042px;
+    }
+    #service-description .subtitle_content{
+        margin-top: 5% !important;
+    }
+    body.watching-service-dec #article-contact-us {
+        margin-top: 100% !important;
+        padding-top: 100% !important;
+    }
+    #contact{
+        width: 81% !important;
+    }
+}

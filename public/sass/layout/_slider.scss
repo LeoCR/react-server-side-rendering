@@ -1,0 +1,24 @@
+.bg_normal ellipse{
+    -moz-transition: all ease-in-out 0.35s;
+    -webkit-transition: all ease-in-out 0.35s;
+    -o-transition: all ease-in-out 0.35s;
+    -ms-transition: all ease-in-out 0.35s;
+    transition: all ease-in-out 0.35s;
+}
+.btn-prev,
+.btn-next {
+  position: absolute;
+  top: 4%;
+  width: 60px;
+  height: 60px;
+  z-index: 13;
+  cursor: pointer; 
+}
+.btn-prev {
+  left: 10px;
+  right: auto;
+}
+.btn-next {
+  right: 10px;
+  left: auto;
+}

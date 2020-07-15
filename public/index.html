@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/js/libs.min.js" data-defer="defer"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet"/> 
+    <link rel="stylesheet" type="text/css" href="/main.css" media="all" data-defer="defer"/>
+    <style type="text/css" rel="stylesheet" >
+        .subtitle_content {
+            max-width: 479px;
+            position: relative;
+            z-index: 12;
+            float: left;
+            left: 49%;
+        }
+        #service-description .subtitle_content .txt_mision text {
+            font-size: 7px !important;
+        }
+        .watching-service-dec #icons-services-div a{
+            z-index: 90;
+            display: inline-block;
+            vertical-align: middle;
+            transform: perspective(1px) translateZ(0px);
+            box-shadow: transparent 0px 0px 1px;
+            position: relative;
+            transition-property: color;
+            transition-duration: 0.3s;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            cursor: pointer;
+            background: #000 !important;
+            padding: 15px 20px !important;
+            float: left;
+        }
+        #service-description .subtitle_content .txt_mision text,.txt-subtitle-about {
+            font-size: 7px !important;
+        }
+        body.is-mobile #service-description .subtitle_content ,body.is-mobile #icons-services-div .subtitle_content{
+            margin-top: 11% !important;left: 0px !important;
+        }
+        body.is-mobile #service-description #service_descriptin_content p {
+            padding: 20px 60px !important;
+        }
+        body.is-mobile #service-description #service_descriptin_content aside {
+            margin-top: 20% !important;
+        }
+        body.is-mobile #service_descriptin_content aside p {
+            margin-top:67% !important;
+        }
+        body.is-mobile  #service_descriptin_content {
+            width: 98% !important;
+        }
+        body.is-mobile  #service-description #service_descriptin_content {
+            margin-top: 5% !important;
+        }
+  </style>
+    <title>Leonardo A.S.</title>
+  </head>
+  <body class="home_page">
+    <noscript>You need to enable JavaScript to run this Website.</noscript>
+    <main class="main" id="main_content"></main> 
+    <script data-defer="defer">
+        (function(){
+          var mainSite={
+            $mainContent:{},
+            $btnNav:{},
+            $isMobile:false,
+            $iconService:{},
+            $browserWindow:{},
+            init:function(){
+                this.$iconService=$('.icon-service');
+                this.$mainContent=$('#main_content');
+                this.$browserWindow=document.body;
+                this.load();
+                this.bind();
+            },
+            load:function(){
+                this.setNav();
+                this.getContentAboutUs();
+                this.getContentServices();
+                this.getContentServicesIcons();
+            },
+            bind:function(){
+                window.addEventListener("resize",this.setNav); 
+                //this.$iconService.on('click',$.proxy(this.viewService,this));
+                this.$mainContent.on('scroll',$.proxy(this.skrollControllerAboutUs,this));
+                this.$mainContent.on('scroll',$.proxy(this.skrollControllerServices,this));
+            },
+            setNav:function(){
+                if(window.innerWidth  >=1050){
+                    this.$isMobile=false;
+                }
+                else{
+                    this.$isMobile=true;
+                }
+            },
+            viewService:function(){
+                document.querySelector("body").classList.add('watching-service-dec'); 
+            },
+            getContentServices:function(){
+              var skrollServicesPageController = new ScrollMagic.Controller(),
+              tmlServices = new TimelineMax({
+                  delay:0.1, 
+                  repeat:0
+              });
+              try{    
+                  var pathServiceBG = document.querySelectorAll('.path_stroke_bg_service');
+                  [].forEach.call(pathServiceBG, function(path) {
+                      console.log('path.getAttribute("style").toString() '+path.getAttribute('style').toString());   
+                  });
+                  document.getElementsByClassName("progress_services")[0].value=0;
+              }
+              catch(error){
+                  console.error('An error occurs in getContentServices() '+ error);
+              }
+              finally{ 
+                  tmlServices.add(
+                      TweenMax.staggerFrom([
+                          document.querySelector('#txt_title_services'),
+                          document.querySelector("#_clip_bg_txt_2")
+                      ],0.5,{
+                      opacity:0,
+                      transformPerspective:300,
+                      transformOrigin:'100% 0%',
+                      x:270,  
+                      width:"0px",
+                      height:"0px", 
+                      ease:Linear.easeInOut
+                  },0.2));
+                  tmlServices.add(
+                      TweenMax.staggerTo([
+                          document.querySelector('#txt_title_services'),
+                          document.querySelector("#_clip_bg_txt_2")
+                      ],0.4,{
+                      transformPerspective:0,
+                      transformOrigin:'0% 0%', 
+                      opacity:1,
+                      x:0,
+                      width:"100%",
+                      height:"100%", 
+                      ease:Linear.easeInOut
+                  },0.3 )); 
+                  tmlServices.duration(1.34); 
+                  skrollServicesPageController.addScene(
+                      new ScrollMagic.Scene({
+                          triggerElement :'#article_services',
+                          duration: 1340
+                      })
+                      .setTween(tmlServices) 
+                  );
+              } 
+            },
+            getContentServicesIcons:function(){
+                try {
+                    document.body.classList.remove('watching-service-dec'); 
+                    document.querySelector('#articl-bckg-img-service').style='';
+                    var skrollServicesIconsController = new ScrollMagic.Controller(),
+                    tmlIconsServices = new TimelineMax({
+                        delay:0.1, 
+                        repeat:0
+                    });
+                    tmlIconsServices.add(
+                        TweenMax.staggerFrom(
+                            document.querySelector('.service_icon_btn')
+                        ,0.5,{
+                        opacity:0,
+                        transformPerspective:300,
+                        transformOrigin:'100% 0%',
+                        x:270,  
+                        ease:Linear.easeInOut
+                    },0.2));
+                    tmlIconsServices.add(
+                        TweenMax.staggerTo(
+                            document.querySelector('.service_icon_btn')
+                        ,0.4,{
+                        transformPerspective:0,
+                        transformOrigin:'0% 0%', 
+                        opacity:1,
+                        x:0,
+                        ease:Linear.easeInOut
+                    },0.3 )); 
+                    tmlIconsServices.duration(0.74); 
+                    skrollServicesIconsController.addScene(
+                        new ScrollMagic.Scene({
+                            triggerElement :'#transition-group-container',
+                            duration: 740
+                        })
+                        .setTween(tmlIconsServices) 
+                    );
+                } 
+                catch (error) {
+                    console.log('An Error occurs in ServicesIcons.js in getContent() '+error);
+                    console.error(error);
+                }
+            },
+            getContentAboutUs:function(){ 
+              try{    
+                  var skrollAboutCtlr = new ScrollMagic.Controller(),
+                  tmlnAboutTtl = new TimelineMax({
+                          delay:0.1, 
+                          repeat:0
+                  }),
+                  tmlnSVGCnt=new TimelineMax({delay:0.4}),
+                  tmlnAboutCnt = new TimelineMax( {delay:0.3}),
+                  pathsClouds = document.getElementsByClassName('path_stroke_cloud');
+                  [].forEach.call(pathsClouds, function(path) {
+                      path.setAttribute('style', "stroke-width:18px;stroke: black;fill: none;stroke-dashoffset: 1381.62px;");
+                      path.setAttribute('stroke-dasharray','1381.619384765625');
+                  });
+                  document.getElementsByClassName("progress_svg_cloud")[0].value=0;
+              }
+              catch(error){
+                  console.error('An error occurs in getContentAboutUs() => '+ error);
+              }
+              finally{
+                  tmlnAboutTtl.add(TweenMax.staggerFrom([
+                      document.querySelectorAll('h2#title_about_us svg path'),
+                      document.querySelector("#txt_title_about_us_clip")
+                  ],0.2,{
+                      opacity:0,
+                      transformPerspective:300,
+                      transformOrigin:'100% 0%',
+                      x:70,  
+                      width:"0px",
+                      height:"0px",
+                      rotation:60,
+                      skewX:55,
+                      ease:Linear.EaseIn
+                  },0.1));
+                  tmlnAboutTtl.add(TweenMax.staggerTo([document.querySelectorAll('h2#title_about_us svg path'),document.querySelector("#txt_title_about_us_clip") ],0.3,{
+                      transformPerspective:0,
+                      transformOrigin:'0% 0%', 
+                      opacity:1,
+                      x:0,
+                      width:"100%",
+                      height:"100%",
+                      skewX:0,
+                      ease:Linear.EaseIn
+                  },0.3 ));
+                  tmlnSVGCnt.add(TweenMax.staggerFrom(
+                      document.querySelectorAll('.bg_about_us path'),0.5,{
+                      opacity:0,
+                      transformPerspective:100,
+                      transformOrigin:'80% 30%',
+                      x:170,  
+                      width:"0px",
+                      height:"0px",
+                      rotation:120,
+                      skewX:85,
+                      ease:Linear.EaseIn
+                  },0.3));
+                  tmlnSVGCnt.add(TweenMax.staggerTo(
+                      document.querySelectorAll('.bg_about_us path'),0.2,{
+                      opacity:1,
+                      transformPerspective:300,
+                      transformOrigin:'0% 0%',
+                      x:0,  
+                      width:"100%",
+                      height:"100%",
+                      rotation:0,
+                      skewX:0,
+                      ease:Linear.EaseIn
+                  },0.2));
+                  tmlnAboutCnt.add(TweenMax.from(
+                      document.querySelector('.div_about_us'),0.8,{
+                      opacity:0.2,
+                      x:370,  
+                      ease:Linear.EaseIn
+                  },0.6));
+                  tmlnAboutCnt.add(TweenMax.to(
+                      document.querySelector('.div_about_us'),0.7,{
+                      opacity:1,
+                      x:-70,  
+                      ease:Linear.EaseIn
+                  },0.8));
+                  skrollAboutCtlr.addScene(
+                      new ScrollMagic.Scene({
+                          triggerElement : '.aside_about_us',
+                          duration:940
+                      })
+                      .setTween(tmlnAboutTtl) 
+                  );
+                  skrollAboutCtlr.addScene(
+                      new ScrollMagic.Scene({
+                          triggerElement : '.aside_about_us',
+                          duration: 400
+                      })
+                      .setTween(tmlnAboutCnt) 
+                  );
+                  skrollAboutCtlr.addScene(
+                      new ScrollMagic.Scene({
+                          triggerElement : '.aside_about_us',
+                          duration: 700
+                      })
+                      .setTween(tmlnSVGCnt) 
+                  );
+                }
+            },
+            skrollControllerServices:function(e){
+              var scrollPositn=e.currentTarget.scrollTop;
+              var scrollProgresServiceIcon= scrollPositn-parseInt(document.querySelector('#article_services').offsetTop-260);
+              var contllrSvgIconService = document.querySelector('#skrl_progress_services');
+              try {
+                  var pathStrokeIconService = anime({
+                      targets: ['.path_stroke_bg_service','.draw_path','data_fill'],   
+                      strokeDashoffset: [anime.setDashoffset ,0],
+                      easing: 'easeInSine',
+                      duration: 2800,
+                      delay: function(el, i) { 
+                          return i * 250
+                      },
+                      direction: 'alternate',
+                      loop: false,
+                      autoplay:false ,
+                      begin: function(anim) {
+                          try {
+                              var pathFills = document.querySelectorAll('.data_fill');
+                              [].forEach.call(pathFills, function(pathFill) { 
+                                      pathFill.style.fill='transparent'; 
+                                      pathFill.style.fillOpacity=0.4;
+                              });
+                          } 
+                          catch (error) {
+                              console.error('An error occurs in '+error );
+                          }
+                      },
+                      complete: function(anim) {
+                          try {
+                              var pathFills = document.querySelectorAll('.data_fill');
+                              [].forEach.call(pathFills, function(pathFill) { 
+                                      var pathFillColor=pathFill.getAttribute("data-fill");
+                                      pathFill.style.fill=pathFillColor; 
+                                      pathFill.style.fillOpacity=1; 
+                              });     
+                          } 
+                          catch (error) {
+                              console.error(error+' An error occurs');
+                          }
+                      } 
+                  });
+                  if(scrollProgresServiceIcon>=0 ){//console.log("scrollProgresServiceIcon "+scrollProgresServiceIcon);
+                      contllrSvgIconService.value=scrollProgresServiceIcon; 
+                  }
+                  pathStrokeIconService.seek(pathStrokeIconService.duration * (contllrSvgIconService.value /200));      
+              }
+              catch (error) {
+                  console.log("Error occurs in skrollController() "+error);
+              }
+            },
+            skrollControllerAboutUs:function(e){
+                var scrollPositn=e.currentTarget.scrollTop;
+                var scrollProgresCloudAboutUs= scrollPositn-parseInt(document.querySelector('#about_us_article').offsetTop+400 );
+                document.querySelector(".progress_svg_cloud").value=scrollProgresCloudAboutUs;
+                var contllrSvgCloud = document.querySelector('.progress_svg_cloud');
+                var pathStrokeCloudAnim = anime({
+                  targets: '.path_stroke_cloud',   
+                  strokeDashoffset: [anime.setDashoffset,0],
+                  easing: 'easeInSine',
+                  duration: 1900,
+                  delay: function(el, i) { 
+                      return i * 250
+                  },
+                  direction: 'alternate',
+                  loop: false,
+                  autoplay:false 
+                });
+                try {
+                    pathStrokeCloudAnim.seek(pathStrokeCloudAnim.duration * (contllrSvgCloud.value / 100));
+                    if(contllrSvgCloud.value>=100){
+                        document.querySelector("#svg_cloud").classList.add("svg_bg_fill_cloud");
+                        document.querySelector("#path_stroke_cloud").style.strokeWidth="0px";
+                    }
+                    else{
+                        document.querySelector("#svg_cloud").classList.remove("svg_bg_fill_cloud");
+                        document.querySelector("#path_stroke_cloud").style.strokeWidth="14px";
+                    }
+                } 
+                catch (error) {
+                    console.log("An error occurs in About.js skrollController() "+error);
+                }
+            },
+        }
+          mainSite.init();
+        })()
+    </script>
+  </body>
+</html>

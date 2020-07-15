@@ -1,0 +1,18 @@
+@import "../vendors/btn_hover/options";
+@import "../vendors/btn_hover/mixins";
+@import "../vendors/btn_hover/hacks";
+@import "../vendors/btn_hover/effects/background-transitions/rectangle-out";
+@if $includeClasses {
+	.btn{
+        @include rectangle-out();
+        background: #000;
+        color: #fff;
+        border:none !important;
+        padding: 15px 20px;text-decoration: none;
+        cursor: pointer;
+        &:hover,&:focus,&:active{
+            text-decoration: none;
+            color: #000;
+        }
+	}
+}

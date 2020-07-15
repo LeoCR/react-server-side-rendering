@@ -1,0 +1,17 @@
+@import "base/base";
+@import "vendors/vendors";
+@import "layout/layout"; 
+#btn_send_contact{
+    background: #a90329;
+    background: -moz-linear-gradient(top,  #a90329 0%, #8f0222 44%, #6d0019 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+    &:hover{
+        background: #f9c667; /* Old browsers */
+        background: -moz-linear-gradient(top,  #f9c667 0%, #f4b164 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #f9c667 0%,#f4b164 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #f9c667 0%,#f4b164 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9c667', endColorstr='#f4b164',GradientType=0 ); /* IE6-9 */
+    }
+}

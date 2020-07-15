@@ -1,0 +1,22 @@
+#bg_article_about_us{ 
+    width: 100%;
+    position: absolute;
+    height: auto;
+    background-size: cover !important;
+    min-height: 2000px ;
+    z-index: 1 !important;
+    background: url('/img/articl-bckg-img/about_us.png') no-repeat;
+}
+#articl-bckg-img-service{
+    height: auto;
+    min-height: 800px ;
+    z-index: 2 !important;
+    position: relative;
+    transition:all 0.8s ease-in-out;
+    -moz-transition:all 0.8s ease-in-out;
+    -webkit-transition:all 0.8s ease-in-out;
+    -o-transition:all 0.8s ease-in-out;
+    -ms-transition:all 0.8s ease-in-out;
+    background: url('/img/articl-bckg-img/service.png') no-repeat;
+    background-size: cover;
+}
