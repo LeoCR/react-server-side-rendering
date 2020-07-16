@@ -3,7 +3,7 @@ var concat = require('gulp-concat');
 
 gulp.task('libs', ()=> {
   return gulp.src([
-    './src/vendors/jquery/jquery.js',
+    './src/vendors/jquery/jquery.min.js',
     './src/vendors/scrollmagic/minified/ScrollMagic.min.js',
     './src/vendors/greensock/minified/TweenMax.min.js',
     './src/vendors/anime/anime.min.js',
@@ -17,7 +17,7 @@ gulp.task('libs', ()=> {
 
 gulp.task('watch', ()=> {
       gulp.watch([
-        './src/vendors/jquery/jquery.js',
+        './src/vendors/jquery/jquery.min.js',
         './src/vendors/scrollmagic/minified/ScrollMagic.min.js',
         './src/vendors/greensock/minified/TweenMax.min.js',
         './src/vendors/anime/anime.min.js',
