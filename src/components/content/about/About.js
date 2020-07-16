@@ -1,43 +1,64 @@
-import React from "react";
+import React,{useState}from "react";
 import TitleAbout from "./TitleAbout";
 import ContentSVGAbout from "./ContentSVGAbout";
 import SubtitleAbout from "./SubtitleAbout";
 import CloudSVG from './CloudSVG';
 import ReadMoreBG from './ReadMoreBG';
-export default class About extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state={
-            isReadingMore:false
+
+export const About =()=>{
+        const [isReadingMore,setReadMore]=useState(false)
+        const readMore=()=>{
+            try { 
+                    document.body.classList.toggle('reading_more_about_us');
+                    setReadMore(true); 
+            } 
+            catch (error) {
+                console.log("Error occurs in About.js readMore() "+error);    
+            }
         }
-    }
-    readMore=()=>{
-       try {
-            console.log('ReadMore ');
-            document.body.classList.toggle('reading_more_about_us');
-            this.setState({
-                isReadingMore:true
-            }); 
-       } 
-       catch (error) {
-           console.log("Error occurs in About.js readMore() "+error);    
-       }
-    }
-    readLess(){
-        try {
-            console.log('ReadMore ');
-            document.body.classList.toggle('reading_more_about_us');
-            this.setState({
-                isReadingMore:false
-            }); 
+        const readLess=()=>{
+            try { 
+                document.body.classList.toggle('reading_more_about_us');
+                setReadMore(false);  
+            } 
+            catch (error) {
+                console.log("Error occurs in About.js readMore() "+error);    
+            }
         } 
-        catch (error) {
-            console.log("Error occurs in About.js readMore() "+error);    
+        const skrollController=(e)=>{
+            var scrollPositn=e.currentTarget.scrollTop;
+            var scrollProgresCloudAboutUs= scrollPositn-parseInt(document.querySelector('#about_us_article').offsetTop+400 );
+            document.querySelector(".progress_svg_cloud").value=scrollProgresCloudAboutUs;
+            var contllrSvgCloud = document.querySelector('.progress_svg_cloud');
+            var pathStrokeCloudAnim = anime({
+                targets: '.path_stroke_cloud',   
+                strokeDashoffset: [anime.setDashoffset,0],
+                easing: 'easeInSine',
+                duration: 1900,
+                delay: function(el, i) { 
+                    return i * 250
+                },
+                direction: 'alternate',
+                loop: false,
+                autoplay:false 
+            });
+            try {
+                pathStrokeCloudAnim.seek(pathStrokeCloudAnim.duration * (contllrSvgCloud.value / 100));
+                if(contllrSvgCloud.value>=100){
+                    document.querySelector("#svg_cloud").classList.add("svg_bg_fill_cloud");
+                    document.querySelector("#path_stroke_cloud").style.strokeWidth="0px";
+                }
+                else{
+                    document.querySelector("#svg_cloud").classList.remove("svg_bg_fill_cloud");
+                    document.querySelector("#path_stroke_cloud").style.strokeWidth="14px";
+                }//console.log('contllrSvgCloud.value '+contllrSvgCloud.value);//console.log('skrollController() animeScrollController()'+ ' document.querySelector(#about_us).offsetTop '+ parseInt(document.querySelector('#about_us').offsetTop+20) );             //console.log("Added Scroll Listener+ #main_content, e.currentTarget.scrollTop()=> "+jQuery(e.currentTarget).scrollTop())  
+            } 
+            catch (error) {
+                console.log("An error occurs in About.js skrollController() "+error);
+            }
         }
-    }
-    render(){
         var svgReadMore='';
-        if(this.state.isReadingMore){
+        if(isReadingMore){
             svgReadMore=<ReadMoreBG/>  ;                     
         }
        return(
@@ -59,7 +80,7 @@ export default class About extends React.Component{
                     className="progress_svg_cloud scrolled-comp" 
                     type="range" name="points" min="0"
                     max="100" step="0.001" 
-                    onChange={this.skrollController} 
+                    onChange={(e)=>skrollController(e)} 
                     style={{paddingTop:'390px',position:'relative',
                      width:'400px','opacity':0,'visibility':'hidden'}} />
                 <figure style={{padding:'18% 0px 0px 0px',
@@ -102,7 +123,7 @@ export default class About extends React.Component{
                             for some modern solutions such as: E-Commerce ,Cloud Development, CMS ,Custom Dashboards...
                         </p>
                         <button className="btn" 
-                            onClick={this.readMore} 
+                            onClick={(e)=>readMore(e)} 
                             style={{border:'none'}} 
                             id="btn_read_more_about_us">
                             Read More
@@ -146,7 +167,7 @@ export default class About extends React.Component{
                                     <li>SASS<span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
                                 </ul>
                                 <button className="btn" 
-                                onClick={this.readLess} 
+                                onClick={(e)=>readLess(e)} 
                                 style={{border:'none',float:'left'}} 
                                 id="btn_read_less_about_us">
                                 Read Less
@@ -159,6 +180,5 @@ export default class About extends React.Component{
                 }
             </article>
         );
-    }
 }
-  
+export default About;

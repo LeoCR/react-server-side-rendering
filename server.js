@@ -6,7 +6,15 @@ import ReactDOMServer from 'react-dom/server';
 import fs from 'fs';
 import App from './src/App';
 import http from 'http';
+import nodemailer from 'nodemailer';
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+  user: 'restaurantnodejscr@gmail.com',
+  pass: 'ls@ElB#nn3rP@raM)sICanQu7stBaby(#4Gntar3Volver@Uni1ElC13loY3P@rais'
+  }
+});
 var PORT = process.env.PORT||3000;
 let app= express();
 
@@ -29,8 +37,38 @@ app.get(['/','/services/','/services/web-development','/services/ecommerce','/se
 app.get(['/main.css','/services/main.css'],function(req,res){
   res.sendFile(path.resolve(__dirname+'/src/main.css'))
 })
+app.get(['/main.css.map','/services/main.css.map'],function(req,res){
+  res.sendFile(path.resolve(__dirname+'/src/main.css.map'))
+})
 app.get('/services/app.js',function(req,res){
     res.sendFile(path.resolve(__dirname+'/build/app.js'))
+})
+app.post('/submit/contact-form',function(req,res){
+  if(req.body.name!=='' & req.body.phone!=='' 
+  && req.body.email!==''&& req.body.subject!==''&& req.body.comments!==''){
+      var message='<h4>Full Name:</h4><p>'+req.body.name+'</p>';
+      message+='<h4>Subject:</h4><p>'+req.body.subject+'</p>';
+      message+='<h4>Telephone:</h4><p>'+req.body.phone+'</p>';
+      message+='<h4>Email:</h4><p>'+req.body.email+'</p>';
+      message+='<h4>Comment:</h4><p>'+ req.body.comments+'</p>';
+      var mailOptions = {
+          from: 'restaurantnodejscr@gmail.com',
+          to: 'restaurantnodejscr@gmail.com',
+          subject: 'Leonardo Aranibar Contact Form',
+          html: message
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+            res.send(req.body)
+          }
+      });
+  }
+  else{
+      res.send({contact:null})
+  }
 })
 app.get("/services.json",function(req,res){
     res.setHeader('Access-Control-Allow-Origin', '*');

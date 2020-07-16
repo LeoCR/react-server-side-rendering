@@ -1,5 +1,6 @@
 import  React from "react";
 import $ from 'jquery';
+import axios from 'axios';
 export default class Contact extends React.Component{
     constructor(props) {
         super(props);
@@ -13,10 +14,13 @@ export default class Contact extends React.Component{
             phone:''
         }
     }
-    validateForm=()=>{ 
+    validateForm=(e)=>{ 
         console.log('validateForm() ');
-
+        if(e){
+            e.preventDefault();
+        }
         try {
+            
             var tempMsg=[];
             if(this.state.name=== ""){
                 tempMsg.push('The name is required !')
@@ -36,12 +40,13 @@ export default class Contact extends React.Component{
         }
         finally{
             if(tempMsg.length>0){
-                $('#modal-dialog-box').addClass("show");
+                $('#modal-dialog-box').toggleClass("show");
                 var htmlMsg='<ul>';
                 for (var i = 0; i < tempMsg.length; i++) {
                     htmlMsg+='<li>'+tempMsg[i]+'</li>';
                 }
                 htmlMsg+='</ul>';
+                $("#modal-dialog-box .modal-title").html("We couldn\'t Submit the Form");
                 $('#modal-dialog-box p').html(htmlMsg);
             } 
             else{
@@ -52,13 +57,26 @@ export default class Contact extends React.Component{
                     'subject' : $('#subject').val(),
                     'comments' : $('#comments').val()
                 };
-                console.log('data.name=> '+data.name);
-                console.log('data.email=> '+data.email);
-                console.log('data.phone=> '+data.phone);
-                console.log('data.subject=> '+data.subject);
-                console.log('data.comments=> '+data.comments);
-               
-                
+                axios({
+                    method: 'post',
+                    url: '/submit/contact-form',
+                    data: data,
+                    headers: {'Content-Type': 'application/json' }
+                })
+                .then(function (response) {
+                    //handle success
+                    console.log(response);
+                    $('#modal-dialog-box').toggleClass("show");
+                    $("#modal-dialog-box .modal-title").html("Form Submitted Succesful.");
+                    $('#modal-dialog-box p').html("Thanks for writing us.");
+                })
+                .catch(function (error) {
+                    //handle error
+                    $('#modal-dialog-box').toggleClass("show");
+                    $("#modal-dialog-box .modal-title").html("Invalid Form");
+                    $('#modal-dialog-box p').html("An error occurs.");
+                    console.log(error);
+                });      
             }           
         }
     }
@@ -72,6 +90,12 @@ export default class Contact extends React.Component{
             console.log('Error in handleChange '+error);
         }
     } 
+    closeModal=(e)=>{
+        if(e){
+            e.preventDefault();
+        }
+        $('#modal-dialog-box').toggleClass("show");
+    }
     render(){
         return(
             <article style={{
@@ -92,7 +116,7 @@ export default class Contact extends React.Component{
                 <div id="contact_form_container" 
                 style={{width:'45%',position:'relative',float:'left' }}>
                     <h2 style={{ width:'100%',textAlign:'center',padding:'15px 0',color:'#fff' }} id="title_contact_form">Contact Me</h2>    
-                    <form id="contact" className="form" onSubmit={this.validateForm}
+                    <form id="contact" className="form" onSubmit={(e)=>this.validateForm(e)}
                         style={{width:'100%',position:'relative',display:'grid',padding: '0 50px'}}>
                         <label htmlFor="name">Name</label>
                         <input type="text" name="name" id="name" onChange={(e)=>this.handleChange(e)}/>
@@ -106,6 +130,24 @@ export default class Contact extends React.Component{
                         </textarea>
                         <input type="submit" value="Send" id="btn_send_contact" className="btn"/>
                     </form>
+                    <div className="modal" tabindex="-1" role="dialog" id="modal-dialog-box">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Contact Form</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close"  onClick={(e)=>this.closeModal(e)}>
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <p>Modal body text goes here.</p>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={(e)=>this.closeModal(e)}>Close</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div> 
             </article>
         );

@@ -237,8 +237,12 @@ body{
 }
 .show{
    display:block !important;
+   background: rgba(0, 0, 0, 0.7);
 }
 .modal-dialog,.modal{
         padding-top: 36px;
+}
+#modal-dialog-box{
+        z-index: 99999;
 }
 /*** End Services Content ***/
