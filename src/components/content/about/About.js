@@ -121,7 +121,7 @@ export default class About extends React.Component{
                                     In BVMedia I had the responsability of the programming of a Web Application for the Call Center I had to use Five9 API SOAP Web Service for 
                                      generating Statistics ,I also was the responsable of the design and the user experience of some Wordpress Themes. 
                                     Since I worked in Interdesa S.A I was studying in the University Fidelitas the career Systems Engineering to this day. 
-                                    Actually I am working with React,Redux and Node JS designing web applications for improving my portfolio and for growing as professional with these technologies.
+                                    Actually I am working in the portoflio of my Personal Brand with React,Redux and Node JS designing web applications for improving my portfolio and for growing as professional with these technologies.
                                 </p>
                                 <h3 style={{maxWidth:'450px'}}>
                                     <SubtitleAbout txtSubTitle="Skills" xSvg="500"/>
@@ -130,16 +130,20 @@ export default class About extends React.Component{
                                 These are the technologies that I can use:
                                 </p>
                                 <ul id="languages-skills" style={{ position: 'relative',float:'left',width: '100%',marginLeft: '30%'}}>
-                                    <li>Java <span className="porcentage-knowledge" style={{width:"180px"}}>80%</span></li>
+                                    <li>Java <span className="porcentage-knowledge" style={{width:"180px"}}>75%</span></li>
                                     <li>Javascaript <span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
                                     <li>NodeJs <span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
-                                    <li>C# <span className="porcentage-knowledge" style={{width:"175px"}}>75%</span></li>
+                                    <li>PHP <span className="porcentage-knowledge" style={{width:"170px"}}>85%</span></li>
+                                    <li>Wordpress <span className="porcentage-knowledge" style={{width:"190px"}}>95%</span></li>
+                                    <li>C# <span className="porcentage-knowledge" style={{width:"175px"}}>70%</span></li>
                                     <li>MySQL <span className="porcentage-knowledge" style={{width:"190px"}}>90%</span></li>
                                     <li>Postgresql <span className="porcentage-knowledge" style={{width:"185px"}}>85%</span></li>
                                     <li>ReactJS <span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
                                     <li>Redux <span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
-                                    <li>Angular 4 <span className="porcentage-knowledge" style={{width:"180px"}}>80%</span></li>
-                                    <li>Html5 & CSS3<span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
+                                    <li>Angular 10 <span className="porcentage-knowledge" style={{width:"140px"}}>60%</span></li>
+                                    <li>Html5<span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
+                                    <li>CSS3<span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
+                                    <li>SASS<span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
                                 </ul>
                                 <button className="btn" 
                                 onClick={this.readLess} 
