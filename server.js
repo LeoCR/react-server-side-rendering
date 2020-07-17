@@ -53,7 +53,7 @@ app.post('/submit/contact-form',function(req,res){
       message+='<h4>Comment:</h4><p>'+ req.body.comments+'</p>';
       var mailOptions = {
           from: 'restaurantnodejscr@gmail.com',
-          to: 'restaurantnodejscr@gmail.com',
+          to: 'laranibarsanchez@gmail.com',
           subject: 'Leonardo Aranibar Contact Form',
           html: message
       };
