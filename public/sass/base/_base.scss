@@ -78,7 +78,7 @@ input,input::placeholder,textarea,textarea::placeholder,#comments::placeholder{
     font-size: 17px; 
     color:#000;
 }
-input[type=text],input[type=email],label{
+input[type=text],input[type=email],input[type=tel],label{
     min-height: 48px;
 }
 textarea{

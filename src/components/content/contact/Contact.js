@@ -123,7 +123,7 @@ export default class Contact extends React.Component{
                         <label htmlFor="email">Email</label>
                         <input type="email" name="email" id="email" onChange={(e)=>this.handleChange(e)}/>
                         <label htmlFor="subject">Telephone</label>
-                        <input type="tel" name="phone" id="subject" onChange={(e)=>this.handleChange(e)}/>
+                        <input type="tel" name="phone" id="phone" onChange={(e)=>this.handleChange(e)}/>
                         <label htmlFor="subject">Subject</label>
                         <input type="text" name="subject" id="subject" onChange={(e)=>this.handleChange(e)}/>
                         <label htmlFor="comments">Comments</label>
