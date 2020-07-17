@@ -19,9 +19,8 @@ export default class Contact extends React.Component{
         if(e){
             e.preventDefault();
         }
-        try {
-            
-            var tempMsg=[];
+        var tempMsg=[];
+        try { 
             if(this.state.name=== ""){
                 tempMsg.push('The name is required !')
             }
