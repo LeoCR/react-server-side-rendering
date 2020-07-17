@@ -7,22 +7,31 @@ import fs from 'fs';
 import App from './src/App';
 import http from 'http';
 
-var nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
-var transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  service: 'gmail',
-  auth: {
-    user: 'restaurantnodejscr@gmail.com',
-    pass: 'YouSaidNoStringDevastationsrP@raM)sICanQu7stBaby(#4Gntar3Volver@U87$ithByWindowSuchAZetay'
-  },
-  tls: {
-      // do not fail on invalid certs
-      rejectUnauthorized: false
-  }
+const oauth2Client = new OAuth2(
+  "136454842856-rio63utondf08ltsnagm7s8edbcgmu4d.apps.googleusercontent.com", // ClientID
+  "ADDsyYtHIfcOZj1jE8iTrcVx", // Client Secret
+  "https://developers.google.com/oauthplayground" // Redirect URL
+);
+
+oauth2Client.setCredentials({
+  refresh_token: "1//04jjat5EN8Y_6CgYIARAAGAQSNwF-L9IrIMXWAzMXJtQMV5s91f2IrAolJvlPs0OgcnE4VPZ8Is18CopmyW7X3tMxQE-XQl-OduI"
 });
+const accessToken = oauth2Client.getAccessToken()
+
+const smtpTransport = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+       type: "OAuth2",
+       user: "leonardoas2007@gmail.com", 
+       clientId: "136454842856-rio63utondf08ltsnagm7s8edbcgmu4d.apps.googleusercontent.com",
+       clientSecret: "ADDsyYtHIfcOZj1jE8iTrcVx",
+       refreshToken: "1//04jjat5EN8Y_6CgYIARAAGAQSNwF-L9IrIMXWAzMXJtQMV5s91f2IrAolJvlPs0OgcnE4VPZ8Is18CopmyW7X3tMxQE-XQl-OduI",
+       accessToken: accessToken
+  }}); 
 var PORT = process.env.PORT||3000;
 let app= express();
 
@@ -61,19 +70,20 @@ app.post('/submit/contact-form',function(req,res){
       message+='<h4>Comment:</h4><p>'+ req.body.comments+'</p>';
       
       var mailOptions = {
-          from: 'restaurantnodejscr@gmail.com',
+          from: 'leonardoas2007@gmail.com',
           to: 'laranibarsanchez@gmail.com',
           subject: 'Leonardo Aranibar Contact Form',
           html: message
-      };
-      transporter.sendMail(mailOptions, function(error, info){
-          if (error) {
-            console.log(error);
-            res.send(error)
-          } else { 
-            res.send(info.response)
-          }
-      });
+      }; 
+      smtpTransport.sendMail(mailOptions, (error, response) => {
+            if (error) {
+              console.log(error);
+              res.send(error)
+            } else { 
+              res.send(response)
+            }
+            smtpTransport.close();
+      }); 
   }
   else{
       res.send({contact:null})
