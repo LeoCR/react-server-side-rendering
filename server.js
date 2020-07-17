@@ -6,13 +6,14 @@ import ReactDOMServer from 'react-dom/server';
 import fs from 'fs';
 import App from './src/App';
 import http from 'http';
-import nodemailer from 'nodemailer';
+
+var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-  user: 'restaurantnodejscr@gmail.com',
-  pass: 'YouSaidNoStringDevastationsrP@raM)sICanQu7stBaby(#4Gntar3Volver@U87$ithByWindowSuchAZetay'
+    user: 'restaurantnodejscr@gmail.com',
+    pass: 'YouSaidNoStringDevastationsrP@raM)sICanQu7stBaby(#4Gntar3Volver@U87$ithByWindowSuchAZetay'
   }
 });
 var PORT = process.env.PORT||3000;
@@ -51,6 +52,7 @@ app.post('/submit/contact-form',function(req,res){
       message+='<h4>Telephone:</h4><p>'+req.body.phone+'</p>';
       message+='<h4>Email:</h4><p>'+req.body.email+'</p>';
       message+='<h4>Comment:</h4><p>'+ req.body.comments+'</p>';
+      
       var mailOptions = {
           from: 'restaurantnodejscr@gmail.com',
           to: 'laranibarsanchez@gmail.com',
@@ -60,9 +62,9 @@ app.post('/submit/contact-form',function(req,res){
       transporter.sendMail(mailOptions, function(error, info){
           if (error) {
             console.log(error);
-          } else {
-            console.log('Email sent: ' + info.response);
-            res.send(req.body)
+            res.send(error)
+          } else { 
+            res.send(info.response)
           }
       });
   }

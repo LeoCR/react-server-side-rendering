@@ -59,9 +59,11 @@ export default class Contact extends React.Component{
                 };
                 axios({
                     method: 'post',
-                    url: 'https://shrouded-crag-45632.herokuapp.com/submit/contact-form',
+                    url: '/submit/contact-form',
                     data: data,
-                    headers: {'Content-Type': 'application/json' }
+                    headers: {
+                        'Content-Type': 'application/json' 
+                    }
                 })
                 .then(function (response) {
                     //handle success
