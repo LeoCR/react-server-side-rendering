@@ -110,7 +110,7 @@ export const About =()=>{
                     <div id="about-us" 
                         className='div_about_us'
                         style={{
-                            width:'100%',float:'right',
+                            width:'85%',float:'right',
                             position:'relative',
                             display:'inline-block',
                             textAlign:'initial'
