@@ -132,9 +132,9 @@ export default class Contact extends React.Component{
                         <textarea name="comments" id="comments" onChange={(e)=>this.handleChange(e)}
                         cols="30" rows="10">
                         </textarea>
-                        <input type="submit" value="Send" id="btn_send_contact" className="btn"/>
+                        <input type="submit" defaultValue="Send" id="btn_send_contact" className="btn"/>
                     </form>
-                    <div className="modal" tabindex="-1" role="dialog" id="modal-dialog-box">
+                    <div className="modal" tabIndex="-1" role="dialog" id="modal-dialog-box">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                             <div className="modal-header">

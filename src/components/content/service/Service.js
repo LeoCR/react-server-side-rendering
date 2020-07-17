@@ -12,7 +12,7 @@ if (typeof document !== "undefined") {
 else {
   Router = require("react-router-dom").StaticRouter;
 } 
-export const Service=props=>{
+export const Service=()=>{
     return(
         <React.Fragment>
             <article id="article_services" className="article_bg_img"
@@ -26,7 +26,7 @@ export const Service=props=>{
                 <input id="skrl_progress_services" 
                     className="progress_services scrolled-comp" 
                     type="range" name="service_path"  min="0" 
-                    value="0" max="990" step="0.001" 
+                    defaultValue="0" max="990" step="0.001" 
                         style={{
                         padding:'0px',position:'relative', width:'600px',
                         display:'none', zIndex: 6,'opacity':0,visibility:'hidden'

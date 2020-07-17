@@ -52,10 +52,10 @@ export default class Slideshow  extends React.Component{
     }
     loadCaption=()=>{
             try {
-                clearCaption();
+                //clearCaption();
                 setTimeout(() => {
                     initCaption();
-                }, 11000);
+                }, 2300);
             }
             catch(error){
                 console.error('An error occurs into Home.js '+error);
@@ -150,11 +150,11 @@ export default class Slideshow  extends React.Component{
     }
     componentDidMount(){
         try {
-            clearCaption();
+            //clearCaption();
             window.addEventListener("resize", this.setHeightSlider);
             document.querySelector('.hamburger').addEventListener("click",this.setHeightSlider);
             this.setHeightSlider();
-            initCaption();
+            //initCaption();
             window.addEventListener("load", this.setHeightSlider); 
             window.addEventListener("load", this.loadCaption);
         } 

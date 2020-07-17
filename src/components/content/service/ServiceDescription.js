@@ -1,54 +1,26 @@
-import  React from "react"; 
+import  React, { useState,useEffect} from "react"; 
 import { Link} from 'react-router-dom';
 import SubtitleAbout from '../about/SubtitleAbout';
 import $ from 'jquery';
 import BenefitsSVG from './BenefitsSVG';
 import ServiceDescriptionBGMobile from './backgrounds/ServiceDescriptionBGMobile';
 import ServiceDescriptionBG from './backgrounds/ServiceDescriptionBG';
-export default class ServiceDescription extends React.Component{
-    constructor(props) {
-        super(props); 
-        this.state={
-            slugService:"empty", 
-            lang:'',
-            isMobile:false,
-            serviceTitle:'Web Development' 
-        }
-    }
-    setMobile=()=>{
-        try {
+export const ServiceDescription=props=>{
+    let [slugService,setSlugService]=useState('empty')
+    let [serviceTitle,setServiceTitle]=useState('Web Development');
+    let [isMobile,setIsMobile]=useState(false)
+    
+    const setBodyClass=()=>{
+        try { 
             setTimeout(() => {
                 if(window.innerWidth<=580){
                     document.querySelector("body").classList.add('is-mobile');
+                    setIsMobile(true);
                 }
                 else{
                     document.querySelector("body").classList.remove('is-mobile');
+                    setIsMobile(false);
                 }
-                if(window.innerWidth  >=850){
-                    this.setState({
-                        "isMobile":false
-                    })
-                }
-                else{
-                    this.setState({
-                        "isMobile":true
-                    })
-                }
-            }, 200);
-        } 
-        catch (error) {
-            console.log("An error occurs in setMobile() ServiceDescription.js  "+error);
-        }
-    }
-    setBodyClass=()=>{
-        try {
-            if(window.innerWidth<=580){
-                document.querySelector("body").classList.add('is-mobile');
-            }
-            else{
-                document.querySelector("body").classList.remove('is-mobile');
-            }
-            setTimeout(() => {
                 document.querySelector("body").classList.add('watching-service-dec'); 
                 $('.nav_btn').each(function(){
                     if($(this).data('href')==='#services'){
@@ -61,10 +33,10 @@ export default class ServiceDescription extends React.Component{
             console.log('An error occurs in ServiceDescription.js setBodyClass() '+error);
         }
     }
-    componentDidMount() {     
+    useEffect(()=>{
         try { 
-            window.addEventListener("load", this.setBodyClass);
-            window.addEventListener("resize", this.setMobile);
+            window.addEventListener("load", setBodyClass());
+            window.addEventListener("resize", setBodyClass());
             var targetUrl=window.location.pathname.toString(),
             splitLocalUrl=targetUrl.split('/');
             $('#service-description a').css({
@@ -85,22 +57,16 @@ export default class ServiceDescription extends React.Component{
                 'text-decoration': 'none',
                 'cursor': 'pointer'
             })
-                console.log('splitLocalUrl[2] 5'+ splitLocalUrl[2]);
+                 
                 var jsonServices='/services.json';
-                if(splitLocalUrl[2]==='web-development'){
-                    this.setState({
-                        serviceTitle:'Web Development'
-                    })
+                if(splitLocalUrl[2]==='web-development'){ 
+                    setServiceTitle('Web Development')
                 }
-                else if(splitLocalUrl[2]==='cloud-development'){
-                    this.setState({
-                        serviceTitle:'Cloud Development'
-                    })
+                else if(splitLocalUrl[2]==='cloud-development'){ 
+                    setServiceTitle('Cloud Development')
                 }
-                else if(splitLocalUrl[2]==='ecommerce'){
-                    this.setState({
-                        serviceTitle:'E-commerce'
-                    })
+                else if(splitLocalUrl[2]==='ecommerce'){ 
+                    setServiceTitle('E-commerce')
                 }
                 setTimeout(() => {
                     fetch(jsonServices)
@@ -116,66 +82,64 @@ export default class ServiceDescription extends React.Component{
                             $("#service_descriptin_content aside p").html(data.en.services[2].content);
                         }
                         else{
-                            console.log('ServiceDescription componentDidMount');
+                            console.log('ServiceDescription.useEffect()');
                         }
                     })
-                    .catch(err => console.error(this.props.url, err.toString()))
-                },100);
-                //console.log('splitLocalUrl[2] '+ splitLocalUrl[2]);
-            
-            if(window.innerWidth  >=920){
-                this.setState({
-                    "isMobile":false
-                })
-            }
-            else{
-                this.setState({
-                    "isMobile":true
-                })
-            }
-            this.setState({
-                "slugService":splitLocalUrl[2]
-            });
-            console.log('componentDidMount this.state.slugService '+this.state.slugService);
+                    .catch(err => console.error(props.url, err.toString()))
+                },100);  
+                if(window.innerWidth<=580){ 
+                    setIsMobile(true)
+                }
+                else{ 
+                    setIsMobile(false)
+                } 
+            setSlugService(splitLocalUrl[2])
+            console.log('slugService '+slugService);
         } 
         catch (error) {
-            console.log("An error occurs in ServiceDescription.js componentDidMount() "+error);
+            console.log("An error occurs in ServiceDescription.useEffect() "+error);
         }
-    }
-    goBack=()=>{
-        document.querySelector("body").classList.remove('watching-service-dec');
-        setTimeout(()=>{
-            console.log('goBack 04');
-            $('.data_fill').css({'fill':'#fff','fill-opacity': 1});
-            $('#shopping-cart').css({'fill':'#ffb462'});
-            $('#path_cloud_middle_svg_service').css({'fill':'#ffa542'});
-            $('#path_cloud_service').css({'fill':'#ffa542'});
-        },100)
-    }
-    render(){
-        var svgService='';
-        if(this.state.isMobile || window.innerWidth  <=920){
-            svgService=<ServiceDescriptionBGMobile/>;
+        finally{
+            return()=>{
+                window.removeEventListener("load", setBodyClass());
+            }
         }
-        else{
-            svgService=<ServiceDescriptionBG/>;
+    },[]) 
+    const goBack=()=>{
+        try {
+            document.querySelector("body").classList.remove('watching-service-dec');
+            setTimeout(()=>{
+                console.log('goBack 04');
+                $('.data_fill').css({'fill':'#fff','fill-opacity': 1});
+                $('#shopping-cart').css({'fill':'#ffb462'});
+                $('#path_cloud_middle_svg_service').css({'fill':'#ffa542'});
+                $('#path_cloud_service').css({'fill':'#ffa542'});
+            },100)
+        } catch (error) {
+            console.log('An error occurs in ServiceDescription.goBack()');
         }
-        return(
-            <div id="service-description" style={{with:'100%'}}>
-                <Link to="/" data-href="/"  style={{ zIndex:90}} className="btn btn-large" id="btn-back" onClick={()=>this.goBack()}>Back</Link>
-                <SubtitleAbout xSvg="480" style={{maxWidth:'420px'}} txtSubTitle={this.state.serviceTitle}/>
-                {
-                    svgService
-                }
-                <article id="service_descriptin_content">    
-                    <aside>
-                        <p style={{fontFamily: 'Montserrat'}}></p>
-                    </aside>
-                    <div id="svg_benefits">
-                        <BenefitsSVG />
-                    </div>
-                </article>
-            </div>
-        );
+    } 
+    var svgService='';
+    if(isMobile || window.innerWidth  <=920){
+        svgService=<ServiceDescriptionBGMobile/>;
     }
+    else{
+        svgService=<ServiceDescriptionBG/>;
+    }
+    return(
+        <div id="service-description" style={{with:'100%'}}>
+            <Link to="/" data-href="/"  style={{ zIndex:90,background:'#000000 !important'}} className="btn btn-large btn-back" id="btn-back" onClick={()=>goBack()}>Back</Link>
+            <SubtitleAbout xSvg="480" style={{maxWidth:'420px'}} txtSubTitle={serviceTitle}/>
+            {svgService}
+            <article id="service_descriptin_content">    
+                <aside>
+                    <p style={{fontFamily: 'Montserrat'}}></p>
+                </aside>
+                <div id="svg_benefits">
+                    <BenefitsSVG />
+                </div>
+            </article>
+        </div>
+    );
 }
+export default ServiceDescription;

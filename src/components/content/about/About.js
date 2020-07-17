@@ -80,6 +80,7 @@ export const About =()=>{
                     className="progress_svg_cloud scrolled-comp" 
                     type="range" name="points" min="0"
                     max="100" step="0.001" 
+                    defaultValue={0}
                     onChange={(e)=>skrollController(e)} 
                     style={{paddingTop:'390px',position:'relative',
                      width:'400px','opacity':0,'visibility':'hidden'}} />
