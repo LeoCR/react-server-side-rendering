@@ -10,10 +10,17 @@ import http from 'http';
 var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   service: 'gmail',
   auth: {
     user: 'restaurantnodejscr@gmail.com',
     pass: 'YouSaidNoStringDevastationsrP@raM)sICanQu7stBaby(#4Gntar3Volver@U87$ithByWindowSuchAZetay'
+  },
+  tls: {
+      // do not fail on invalid certs
+      rejectUnauthorized: false
   }
 });
 var PORT = process.env.PORT||3000;
