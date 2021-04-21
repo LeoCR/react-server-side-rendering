@@ -5,7 +5,7 @@ import {Route} from 'react-router-dom';
 import ServiceDescription from "./ServiceDescription";
 import { TransitionGroup } from "react-transition-group";
 
-var Router;
+let Router;
 if (typeof document !== "undefined") {
   Router = require("react-router-dom").BrowserRouter;
 } 

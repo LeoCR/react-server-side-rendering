@@ -2,7 +2,7 @@ import  React,{useState,useEffect} from "react";
 import ServiceWebDevelopment from './desktop/ServiceWebDevelopment';
 import ServiceCloudDevelopmentMobile from './mobile/ServiceCloudDevelopmentMobile';
 export const BenefitsSVG =()=>{
-    var [serviceSlug,setServiceSlug]=useState(false);
+    const [serviceSlug,setServiceSlug]=useState(false);
     useEffect(()=>{
         try { 
             var targetUrl=window.location.pathname.toString(),
@@ -13,7 +13,7 @@ export const BenefitsSVG =()=>{
             console.log("An error occurs in BenefitsSVG.useEffect()  "+error);
         }  
     },[]) 
-    var svgBenefits='';
+    let svgBenefits='';
     if(window.innerWidth<920){
         if(serviceSlug.toString()==='web-development' ||serviceSlug.toString()==='ecommerce'){            
             svgBenefits=<ServiceCloudDevelopmentMobile/>;

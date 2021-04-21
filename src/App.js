@@ -10,7 +10,7 @@ import "@babel/polyfill";
 
 class App extends React.Component{
   scrolledContent=(e)=>{
-    var scrollPositn=e.currentTarget.scrollTop;
+    const scrollPositn=e.currentTarget.scrollTop;
     if(parseInt(scrollPositn)>=20){
        document.querySelector("#header_nav").classList.add("sticky"); 
        document.querySelector("#header_nav").classList.remove("normal_nav"); 

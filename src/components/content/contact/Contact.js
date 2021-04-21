@@ -19,7 +19,7 @@ export default class Contact extends React.Component{
         if(e){
             e.preventDefault();
         }
-        var tempMsg=[];
+        const tempMsg=[];
         try { 
             if(this.state.name=== ""){
                 tempMsg.push('The name is required !')
@@ -40,8 +40,8 @@ export default class Contact extends React.Component{
         finally{
             if(tempMsg.length>0){
                 $('#modal-dialog-box').toggleClass("show");
-                var htmlMsg='<ul>';
-                for (var i = 0; i < tempMsg.length; i++) {
+                let htmlMsg='<ul>';
+                for (let i = 0; i < tempMsg.length; i++) {
                     htmlMsg+='<li>'+tempMsg[i]+'</li>';
                 }
                 htmlMsg+='</ul>';
@@ -49,7 +49,7 @@ export default class Contact extends React.Component{
                 $('#modal-dialog-box p').html(htmlMsg);
             } 
             else{
-                var data = {
+                const data = {
                     'name' : $('#name').val(),
                     'email': $('#email').val(),
                     'phone' : $('#phone').val(),

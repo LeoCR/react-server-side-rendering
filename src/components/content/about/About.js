@@ -26,11 +26,11 @@ export const About =()=>{
             }
         } 
         const skrollController=(e)=>{
-            var scrollPositn=e.currentTarget.scrollTop;
-            var scrollProgresCloudAboutUs= scrollPositn-parseInt(document.querySelector('#about_us_article').offsetTop+400 );
+            const scrollPositn=e.currentTarget.scrollTop;
+            const scrollProgresCloudAboutUs= scrollPositn-parseInt(document.querySelector('#about_us_article').offsetTop+400 );
             document.querySelector(".progress_svg_cloud").value=scrollProgresCloudAboutUs;
-            var contllrSvgCloud = document.querySelector('.progress_svg_cloud');
-            var pathStrokeCloudAnim = anime({
+            const contllrSvgCloud = document.querySelector('.progress_svg_cloud');
+            const pathStrokeCloudAnim = anime({
                 targets: '.path_stroke_cloud',   
                 strokeDashoffset: [anime.setDashoffset,0],
                 easing: 'easeInSine',
@@ -57,7 +57,7 @@ export const About =()=>{
                 console.log("An error occurs in About.js skrollController() "+error);
             }
         }
-        var svgReadMore='';
+        let svgReadMore='';
         if(isReadingMore){
             svgReadMore=<ReadMoreBG/>  ;                     
         }
@@ -137,13 +137,10 @@ export const About =()=>{
                                      xSvg="490"/>
                                 </h3>
                                 <p style={{float:'left',position:'relative',width:'80%'}}>
-                                    I worked as Web Designer in <a href="http://www.interdesa.com/">Interdesa S.A.</a> from 2013 to 2014.
-                                    In Interdesa S.A. I had the responsability of the User experience and the design of the Web Sites and some Web Applications.  
-                                    Then I worked as Web Developer in <a href="https://bvmedia.cr/" >BVMedia</a> from 2016 to 2017.
-                                    In BVMedia I had the responsability of the programming of a Web Application for the Call Center I had to use Five9 API SOAP Web Service for 
-                                     generating Statistics ,I also was the responsable of the design and the user experience of some Wordpress Themes. 
-                                    Since I worked in Interdesa S.A I was studying in the University Fidelitas the career Systems Engineering to this day. 
-                                    Actually I am working in the portoflio of my Personal Brand with React,Redux and Node JS designing web applications for improving my portfolio and for growing as professional with these technologies.
+                                I worked as Web Designer in <a href="http://www.interdesa.com/">Interdesa S.A.</a> from 2013 to 2014. In Interdesa S.A. I had the responsability of the User experience and the design of the Web Sites and some Web Applications. Then
+                                I worked as Web Developer in <a href="https://bvmedia.cr/">BVMedia</a> from 2016 to 2017. In BVMedia I had the responsability of the programming a Web Application for the Call Center, I had to use Five9 API SOAP Web Service for
+                                generate custom Statistics ,I also was the responsable of the design and the user experience of some Wordpress Themes. Since I worked in Interdesa S.A I was studying in the University Fidelitas the career Systems Engineering until this
+                                day. Actually I am working in my portoflio of my Personal Brand with React,Redux and Node JS designing web applications to improve my skills and for growing as professional with these technologies.
                                 </p>
                                 <h3 style={{maxWidth:'450px'}}>
                                     <SubtitleAbout txtSubTitle="Skills" xSvg="500"/>
@@ -163,6 +160,7 @@ export const About =()=>{
                                     <li>ReactJS <span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
                                     <li>Redux <span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
                                     <li>Angular 10 <span className="porcentage-knowledge" style={{width:"140px"}}>60%</span></li>
+                                    <li>Typescript <span className="porcentage-knowledge" style={{width:"155px"}}>75%</span></li>
                                     <li>Html5<span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
                                     <li>CSS3<span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>
                                     <li>SASS<span className="porcentage-knowledge" style={{width:"200px"}}>100%</span></li>

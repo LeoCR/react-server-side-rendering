@@ -142,7 +142,7 @@ class MainNav extends React.Component{
   }
   setNav=()=>{
     try { 
-      var pieces = 14;
+      const pieces = 14;
       setTimeout(() => {
         if(window.innerWidth  >=1050){
           this.setState({
@@ -151,13 +151,13 @@ class MainNav extends React.Component{
           if (parseInt(document.querySelectorAll('.nav_btn .piece').length)===0 ) {
             console.log('.nav_btn .piece is undefined');  
             setTimeout(function(){ 
-                  var pieceW = 20,
+                  const pieceW = 20,
                   pieceH = 25,
                   navsItems=document.querySelectorAll('.nav_btn');
                   [].forEach.call(navsItems,function(div){
-                    var txtNav= "<p class='txt_nav_menu'>"+div.getAttribute('title').toUpperCase()+"</p>";
+                    const txtNav= "<p class='txt_nav_menu'>"+div.getAttribute('title').toUpperCase()+"</p>";
                     div.innerHTML= txtNav; 
-                    for (var i = pieces - 1; i >= 0; i--) {
+                    for (let i = pieces - 1; i >= 0; i--) {
                       div.innerHTML+='<div class="piece" style="width:'+pieceW+'px;height:'+pieceH+'px;"></div>';
                     };
                   });
@@ -192,9 +192,9 @@ class MainNav extends React.Component{
          z: 0
       }); 
       function breakGlass(from){
-          var piesces=crntTarget.querySelectorAll('.piece');
+          const piesces=crntTarget.querySelectorAll('.piece');
           [].forEach.call(piesces,function(div){
-            var distX = getRandomArbitrary(-250, 250),
+            const distX = getRandomArbitrary(-250, 250),
                 distY = getRandomArbitrary(-250, 250),
                 rotY  = getRandomArbitrary(-720, 720),
                 rotX  = getRandomArbitrary(-720, 720),
@@ -216,7 +216,7 @@ class MainNav extends React.Component{
     }
   }
   setNormal=(selector=".nav_btn:not(.selected)")=>{
-    var navsItems=document.querySelector(selector); 
+    const navsItems=document.querySelector(selector); 
     try {
       [].forEach.call(navsItems.querySelectorAll('.piece'),function(div){
         TweenLite.set(
@@ -258,8 +258,8 @@ class MainNav extends React.Component{
   }
   btnNavClicked=(e)=>{
       e.preventDefault(); 
-      var targetUrl=e.currentTarget.getAttribute("data-href").toString();
-      var navsItems=document.querySelectorAll(".nav_btn"); 
+      const targetUrl=e.currentTarget.getAttribute("data-href").toString();
+      const navsItems=document.querySelectorAll(".nav_btn"); 
       if (targetUrl==="#home"){
         TweenMax.to([window,document.querySelector("#main_content")], 2.5, {
                 ease:Linear.EaseIn,
@@ -366,7 +366,7 @@ class MainNav extends React.Component{
       }
       try{
         [].forEach.call(navsItems,function(div){
-          var parsedSlug=div.getAttribute("id").toString();
+          const parsedSlug=div.getAttribute("id").toString();
           if(parsedSlug!==targetUrl){//console.log(div.getAttribute("id"));
                 div.classList.remove("selected");
           }

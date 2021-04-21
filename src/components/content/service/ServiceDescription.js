@@ -6,9 +6,9 @@ import BenefitsSVG from './BenefitsSVG';
 import ServiceDescriptionBGMobile from './backgrounds/ServiceDescriptionBGMobile';
 import ServiceDescriptionBG from './backgrounds/ServiceDescriptionBG';
 export const ServiceDescription=props=>{
-    let [slugService,setSlugService]=useState('empty')
-    let [serviceTitle,setServiceTitle]=useState('Web Development');
-    let [isMobile,setIsMobile]=useState(false)
+    const [slugService,setSlugService]=useState('empty')
+    const [serviceTitle,setServiceTitle]=useState('Web Development');
+    const [isMobile,setIsMobile]=useState(false)
     
     const setBodyClass=()=>{
         try { 
@@ -37,7 +37,7 @@ export const ServiceDescription=props=>{
         try { 
             window.addEventListener("load", setBodyClass());
             window.addEventListener("resize", setBodyClass());
-            var targetUrl=window.location.pathname.toString(),
+            const targetUrl=window.location.pathname.toString(),
             splitLocalUrl=targetUrl.split('/');
             $('#service-description a').css({
                 'display': 'inline-block',
@@ -58,7 +58,7 @@ export const ServiceDescription=props=>{
                 'cursor': 'pointer'
             })
                  
-                var jsonServices='/services.json';
+                const jsonServices='/services.json';
                 if(splitLocalUrl[2]==='web-development'){ 
                     setServiceTitle('Web Development')
                 }
@@ -119,7 +119,7 @@ export const ServiceDescription=props=>{
             console.log('An error occurs in ServiceDescription.goBack()');
         }
     } 
-    var svgService='';
+    let svgService='';
     if(isMobile || window.innerWidth  <=920){
         svgService=<ServiceDescriptionBGMobile/>;
     }

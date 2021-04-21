@@ -2,10 +2,10 @@ import {TweenMax} from 'gsap';
 export function initCaption(){
     startCaption();
 }
-export function changeBGCaption(){
+export const changeBGCaption=()=>{
     return new Promise(resolve => {
         setTimeout(() => { 
-            var slideToShow= document.querySelector('div.slick-slide.slick-active');
+            const slideToShow= document.querySelector('div.slick-slide.slick-active');
             TweenMax.to(slideToShow.querySelector('.aside_caption'),0.1,{
                 autoAlpha:1
             });
@@ -21,10 +21,10 @@ export function changeBGCaption(){
         }, 200); 
     });
 }
-export function changeContentCaption(){
+export const changeContentCaption=()=>{
     return new Promise(resolve => {    
         setTimeout(() => { 
-            var slideToShow= document.querySelector('div.slick-slide.slick-active');
+            const slideToShow= document.querySelector('div.slick-slide.slick-active');
             TweenMax.staggerTo([
                     slideToShow.querySelector('.aside_caption .btn'),
                     slideToShow.querySelector('.aside_caption h1'),
@@ -38,7 +38,7 @@ export function changeContentCaption(){
         }, 1000); 
       });
 }
-export function clearCaption() {
+export const clearCaption=()=> {
         if(document.querySelectorAll('.aside_caption')===null){
             clearCaption();
         }

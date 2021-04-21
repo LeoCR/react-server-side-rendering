@@ -3,7 +3,7 @@ import {TimelineMax,TweenMax,Linear} from 'gsap';
 export const ReadMoreBG=()=>  {  
     const getContent=()=>{
         console.log('ReadMoreBG getContent()');
-        var tmlnSVGCnt=new TimelineMax({delay:0.4});
+        const tmlnSVGCnt=new TimelineMax({delay:0.4});
         tmlnSVGCnt.add(TweenMax.staggerFrom(
             document.querySelectorAll('#read_more_bg_content path'),
             0.5,{
