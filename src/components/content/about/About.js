@@ -140,7 +140,7 @@ export const About =()=>{
                                 I worked as Web Designer in <a href="http://www.interdesa.com/">Interdesa S.A.</a> from 2013 to 2014. In Interdesa S.A. I had the responsability of the User experience and the design of the Web Sites and some Web Applications. Then
                                 I worked as Web Developer in <a href="https://bvmedia.cr/">BVMedia</a> from 2016 to 2017. In BVMedia I had the responsability of the programming a Web Application for the Call Center, I had to use Five9 API SOAP Web Service for
                                 generate custom Statistics ,I also was the responsable of the design and the user experience of some Wordpress Themes. Since I worked in Interdesa S.A I was studying in the University Fidelitas the career Systems Engineering until this
-                                day. Actually I am working in my portoflio of my Personal Brand with React,Redux and Node JS designing web applications to improve my skills and for growing as professional with these technologies.
+                                day. Then I continued my carreer working in my portoflio of my Personal Brand with React,Redux and Node JS designing web applications to improve my skills and for growing as professional with these technologies.Actually I am working as Full Stack Developer with React,Redux,NodeJS in a big company named <a href="https://www.3pillarglobal.com/" title="3pillar">3pillar</a>.
                                 </p>
                                 <h3 style={{maxWidth:'450px'}}>
                                     <SubtitleAbout txtSubTitle="Skills" xSvg="500"/>
