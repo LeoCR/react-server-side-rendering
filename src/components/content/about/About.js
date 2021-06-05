@@ -294,9 +294,9 @@ export const About = () => {
                 <p>Java{" "}</p>
                 <span
                   className="porcentage-knowledge"
-                  style={{ width: "170px" }}
+                  style={{ width: "100px" }}
                 >
-                  70%
+                  50%
                 </span>
               </li>
               
@@ -322,9 +322,9 @@ export const About = () => {
                 <p>C#{" "}</p>
                 <span
                   className="porcentage-knowledge"
-                  style={{ width: "140px" }}
+                  style={{ width: "100px" }}
                 >
-                  60%
+                  50%
                 </span>
               </li>
               <li>
